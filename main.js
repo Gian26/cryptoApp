@@ -1,5 +1,7 @@
 const {app, BrowserWindow, Menu} = require('electron')
 const shell = require('electron').shell
+const ipc = require('electron').ipcMain
+
 
 //set NODE_ENV
 process.env.NODE_ENV='dev';
@@ -13,7 +15,7 @@ process.env.NODE_ENV='dev';
     win = new BrowserWindow({width: 800, height: 600})
 
     // and load the index.html of the app.
-    win.loadFile('index.html')
+    win.loadFile('src/index.html')
 
     // Open the DevTools.
     win.webContents.openDevTools()
@@ -105,5 +107,8 @@ process.env.NODE_ENV='dev';
     }
   })
 
+ipc.on('update-notify-value',function(event,arg){
+  win.webContents.send('targetPriceVal',arg)
+});
   // In this file you can include the rest of your app's specific main process
   // code. You can also put them in separate files and require them here.
