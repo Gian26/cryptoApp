@@ -8,6 +8,12 @@ const notifyBtn = document.getElementById('notifyBtn')
 var price = document.querySelector('h1')
 var targetPrice = document.getElementById('targetPrice')
 
+const notification = {
+    title: 'BTC Alert',
+    body: 'BTC just beat your target price!',
+    icon: path.join(__dirname,'../assets/img/btc.png')
+}
+
 
 function getBTC(){
   axios.get('https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC&tsyms=USD')
@@ -25,11 +31,6 @@ function getBTC(){
       // }
       //
   })
-}
-
-const notification = {
-    title: 'BTC Alert',
-    body: 'BTC just beat your target price!'
 }
 
 
